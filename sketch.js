@@ -40,7 +40,7 @@ function setup(){
     pig1=new Pig(810,350);
     pig2=new Pig(810,220);
 
-    bird1=new Bird(100,100);
+    bird1=new Bird(200,50);
 
     // var options={
     //     bodyA:bird1.body,
@@ -53,7 +53,7 @@ function setup(){
     // World.add(myWorld,chain);
 
     //chain=new Chain(bird1.body,log6.body);
-    slingshot = new Slingshot(bird1.body,{x:200, y:100});
+    slingshot = new Slingshot(bird1.body,{x:200, y:50});
 
 }
 
