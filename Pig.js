@@ -42,6 +42,11 @@ class Pig extends BaseClass {
         World.remove(myWorld,this.body);
         push();
         this.Visibility=this.Visibility-5;
+        
+        // To apply transparency to an image without affecting its color, use white as the tint color and specify an alpha value.
+        //  alpha - which specifies the opacity for a color.
+        //The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (fully opaque).
+  
         tint(255,this.Visibility);
         image(this.image,this.body.position.x,this.body.position.y,50,50);
         pop();
