@@ -1,3 +1,39 @@
+// String 
+var string="This is a string";
+console.log(string);
+
+var num=100;
+console.log(num);
+
+var bool=true;
+console.log(bool);
+
+var object;
+console.log(object);
+
+object=null;
+console.log(object);
+
+var arr1=[1,2,3,4,5];
+console.log(arr1);
+
+var arr2=["name",12,true];
+console.log(arr2);
+
+var arr3=[[1,2],[2,3],[3,4]];
+console.log(arr3);
+
+console.log(arr3[0]);
+
+console.log(arr3[1][1]);
+
+arr3.push("my name");
+console.log(arr3);
+
+arr3.pop();
+console.log(arr3);
+
+
 const Engine=Matter.Engine;
 const World=Matter.World;
 const Bodies=Matter.Bodies;
@@ -12,6 +48,7 @@ var bird1;
 var bgImg;
 var constrainedLog,slingshot;
 
+var gameState="onSling";
 function preload(){
     bgImg=loadImage("sprites/bg.png");
 }
@@ -92,15 +129,19 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird1.body,{x:mouseX,y:mouseY});
+    if(gameState !== "launched"){
+        Matter.Body.setPosition(bird1.body,{x:mouseX,y:mouseY});
+
+    }
 }
 
 function mouseReleased(){
     slingshot.fly();
+    gameState="launched";
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird1.body);
+        //slingshot.attach(bird1.body);
     }
 }
