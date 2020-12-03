@@ -45,12 +45,16 @@ var box1,box2,box3,box4,box5;
 var log1,log2,log3,log4,log5;
 var pig1,pig2;
 var bird1;
-var bgImg;
+var bg,backgroundImg;
 var constrainedLog,slingshot;
-
+var score=0;
 var gameState="onSling";
 function preload(){
-    bgImg=loadImage("sprites/bg.png");
+    bg=loadImage("sprites/bg.png");
+}
+
+function preload(){
+    getBackgroundImg();
 }
 
 function setup(){
@@ -95,7 +99,14 @@ function setup(){
 }
 
 function draw(){
-    background(bgImg);
+    if(backgroundImg)
+        background(backgroundImg);
+
+        noStroke();
+        textSize(35)
+        fill("white")
+        text("Score  " + score, width-300, 50)
+
     Engine.update(myEngine);
 
     ground.display();
@@ -114,7 +125,9 @@ function draw(){
     log4.display();
 
     pig1.display();
+    pig1.score();
     pig2.display();
+    pig2.score();
 
     bird1.display();
     //constrainedLog.display();
@@ -144,4 +157,22 @@ function keyPressed(){
     if(keyCode === 32){
         //slingshot.attach(bird1.body);
     }
+}
+
+async function getBackgroundImg(){
+    var response = await fetch("http://worldtimeapi.org/api/timezone/Australia/Melbourne");
+    var responseJSON = await response.json();
+    console.log(responseJSON);
+    var datetime = responseJSON.datetime;
+    var hour = datetime.slice(11,13);
+    
+    if(hour>=06 && hour<=18){
+        bg = "sprites/bg.png";
+    }
+    else{
+        bg = "sprites/bg2.jpg";
+    }
+
+    backgroundImg = loadImage(bg);
+    console.log(backgroundImg);
 }
