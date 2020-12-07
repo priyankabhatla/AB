@@ -112,7 +112,7 @@ function draw(){
     ground.display();
     platform.display();
 
-
+    console.log(bird1.body.speed);
     box1.display();
     box2.display();
     box3.display();
@@ -142,10 +142,10 @@ function draw(){
 }
 
 function mouseDragged(){
-    if(gameState !== "launched"){
-        Matter.Body.setPosition(bird1.body,{x:mouseX,y:mouseY});
+    // if(gameState !== "launched"){
+         Matter.Body.setPosition(bird1.body,{x:mouseX,y:mouseY});
 
-    }
+    // }
 }
 
 function mouseReleased(){
@@ -154,8 +154,11 @@ function mouseReleased(){
 }
 
 function keyPressed(){
-    if(keyCode === 32){
-        //slingshot.attach(bird1.body);
+    if(keyCode === 32 && bird1.body.speed <1){
+        bird1.trajectory=[];
+        Matter.Body.setPosition(bird1.body,{x:200,y:50});
+        slingshot.attach(bird1.body);
+        
     }
 }
 
